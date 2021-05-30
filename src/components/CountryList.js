@@ -15,7 +15,7 @@ export default CountryList;
 
 const Container = styled.div`
   display: inline-flex;
+  display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
-  margin-top: 30px;
 `;

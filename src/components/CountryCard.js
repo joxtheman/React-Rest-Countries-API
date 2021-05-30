@@ -38,7 +38,7 @@ const Container = styled.div`
 const Image = styled.img`
   object-fit: cover;
   width: 100%;
-  height: 8rem;
+  height: 50%;
 `;
 const CountryTitle = styled.h4`
   padding: 20px;
