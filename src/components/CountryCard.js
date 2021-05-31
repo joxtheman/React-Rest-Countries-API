@@ -27,12 +27,12 @@ export default CountryCard;
 
 const Container = styled.div`
   margin-bottom: 40px;
-  background-color: var(--white);
+  background-color: ${(props) => props.theme.elements};
   border-radius: 3px;
   width: 250px;
-  box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
-  -webkit-box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
-  -moz-box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
+  box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
+  -webkit-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
+  -moz-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
 `;
 
 const Image = styled.img`

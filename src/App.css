@@ -18,7 +18,6 @@
 }
 
 body {
-  background-color: var(--light-mode-background);
-  color: var(--light-mode-text);
+
   font-family: "Nunito Sans", sans-serif;
 }

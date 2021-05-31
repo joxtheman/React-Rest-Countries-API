@@ -44,8 +44,8 @@ const Container = styled.div`
   justify-content: space-between;
 
   & input {
-    color: var(--light-mode-input);
-    background-color: var(--white);
+    /* color: ${(props) => props.theme.fontColor}; */
+    /* background-color: ${(props) => props.theme.elements}; */
     padding: 15px 40px 15px 40px;
     width: 450px;
 
@@ -53,10 +53,11 @@ const Container = styled.div`
     font-family: inherit;
     border: none;
     border-radius: 3px;
-    box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
-    -webkit-box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
-    -moz-box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
+    box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
+    -webkit-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
+    -moz-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
   }
+
   & select {
     padding: 0px 60px 0px 20px;
     font-family: inherit;
@@ -65,8 +66,8 @@ const Container = styled.div`
     outline: none;
     border: none;
     border-radius: 3px;
-    box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
-    -webkit-box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
-    -moz-box-shadow: 0px 1px 3px 0px rgba(133, 133, 133, 0.75);
+    box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
+    -webkit-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
+    -moz-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
   }
 `;

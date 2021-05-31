@@ -4,11 +4,20 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Details from "./components/Details";
+import { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "./components/themes";
 
 function App() {
+  const [theme, setTheme] = useState("light");
+
+  const changeTheme = () => {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  };
   return (
-    <>
-      <Navbar className="dark" />
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <Navbar className="dark" changeTheme={changeTheme} />
       <Router>
         <Switch>
           <Route path="/" exact>
@@ -19,7 +28,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </>
+    </ThemeProvider>
   );
 }
 

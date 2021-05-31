@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Details = () => {
+  const history = useHistory();
   return (
     <div>
       <Container>
-        <Button>
+        <Button onClick={() => history.push("/")}>
           &larr;
           <p>Back</p>
         </Button>
@@ -63,11 +65,11 @@ const Details = () => {
 export default Details;
 
 const Container = styled.div`
-  background-color: var(--white);
+  background-color: ${(props) => props.theme.body};
   height: 90vh;
   padding: 60px 50px;
   padding-right: 200px;
-  box-shadow: inset 0.1px 0.1px 5px rgb(230, 230, 230);
+  box-shadow: inset 0.1px 0.1px 5px ${(props) => props.theme.shadow};
 `;
 const Content = styled.div`
   display: flex;
@@ -82,17 +84,19 @@ const Button = styled.button`
   cursor: pointer;
   align-items: center;
   padding: 6px 24px;
+  color: ${(props) => props.theme.fontColor};
   font-size: 14px;
   border: none;
   border-radius: 3px;
-  background-color: var(--white);
-  -webkit-box-shadow: -1px 1px 5px 2px rgb(230, 230, 230);
-  box-shadow: -1px 1px 5px 2px rgb(230, 230, 230);
+  background-color: ${(props) => props.theme.elements};
+  -webkit-box-shadow: -1px 1px 5px 2px ${(props) => props.theme.shadow};
+  box-shadow: -1px 1px 5px 2px ${(props) => props.theme.shadow};
 
   p {
     padding-left: 12px;
   }
 `;
+
 const DetailsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -121,7 +125,7 @@ const CountryTitle = styled.h3`
 
 const LeftBox = styled.div`
   p {
-    color: var(--light-mode-text);
+    color: ${(props) => props.theme.fontColor};
     font-weight: 600;
     padding-bottom: 5px;
   }
@@ -137,7 +141,7 @@ const BorderCountries = styled.div`
   align-items: center;
   p {
     margin-right: 10px;
-    color: var(--light-mode-text);
+    color: ${(props) => props.theme.fontColor};
     font-weight: 600;
   }
 `;
