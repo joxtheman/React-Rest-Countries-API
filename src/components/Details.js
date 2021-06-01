@@ -1,63 +1,106 @@
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Details = () => {
+  const [country, setCountry] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const history = useHistory();
+  const { id } = useParams();
+  const url = `https://restcountries.eu/rest/v2/name/${id}`;
+
+  const getCountry = async () => {
+    try {
+      const res = await fetch(url);
+
+      if (!res.ok) throw new Error("Something went wrong");
+      const data = await res.json();
+
+      const [newCountry] = data;
+      console.log(newCountry);
+
+      setCountry(newCountry);
+      setHasLoaded(true);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getCountry();
+  }, []);
+
   return (
     <div>
-      <Container>
-        <Button onClick={() => history.push("/")}>
-          &larr;
-          <p>Back</p>
-        </Button>
-        <Content>
-          <ImageContainer>
-            <img src="https://restcountries.eu/data/bel.svg" alt="" />
-          </ImageContainer>
+      {!hasLoaded ? (
+        <Container>
+          <h2>LOADING...</h2>
+        </Container>
+      ) : (
+        <Container>
+          <Button onClick={() => history.push("/")}>
+            &larr;
+            <p>Back</p>
+          </Button>
+          <Content>
+            <ImageContainer>
+              <img src={country.flag} alt="" />
+            </ImageContainer>
 
-          <DetailsContainer>
-            <LeftContent>
-              <CountryTitle>Belgium</CountryTitle>
-              <LeftBox>
-                <p>
-                  Native Name: <span>Belgie</span>
-                </p>
-                <p>
-                  Population: <span>11,319,511</span>
-                </p>
-                <p>
-                  Region: <span>Europe</span>
-                </p>
-                <p>
-                  Sub Region: <span>Western Europe</span>
-                </p>
-                <p>
-                  Capital: <span>Brussels</span>
-                </p>
-              </LeftBox>
-            </LeftContent>
-            <RightContent>
-              <RightBox>
-                <p>
-                  Top Level Domain: <span>.be</span>
-                </p>
-                <p>
-                  Currencies: <span>Euro</span>
-                </p>
-                <p>
-                  Languages: <span>Dutch, French, German</span>
-                </p>
-              </RightBox>
-            </RightContent>
-            <BorderCountries>
-              <p>Border Countries:</p>
-              <BorderButton>France</BorderButton>
-              <BorderButton>Germany</BorderButton>
-              <BorderButton>Netherlands</BorderButton>
-            </BorderCountries>
-          </DetailsContainer>
-        </Content>
-      </Container>
+            <DetailsContainer>
+              <LeftContent>
+                <CountryTitle>{country.name}</CountryTitle>
+                <LeftBox>
+                  <p>
+                    Native Name: <span>{country.nativeName}</span>
+                  </p>
+                  <p>
+                    Population:{" "}
+                    <span>
+                      {new Intl.NumberFormat().format(country.population)}
+                    </span>
+                  </p>
+                  <p>
+                    Region: <span>{country.region}</span>
+                  </p>
+                  <p>
+                    Sub Region: <span>{country.subregion}</span>
+                  </p>
+                  <p>
+                    Capital: <span>{country.capital}</span>
+                  </p>
+                </LeftBox>
+              </LeftContent>
+              <RightContent>
+                <RightBox>
+                  <p>
+                    Top Level Domain: <span>{country.topLevelDomain}</span>
+                  </p>
+                  <p>
+                    Currencies: <span>{country.currencies[0].name}</span>
+                  </p>
+                  <p>
+                    Languages:{" "}
+                    <span>
+                      {country.languages.map((language, index, arr) =>
+                        index === arr.length - 1
+                          ? `${language.name}`
+                          : `${language.name}, `
+                      )}
+                    </span>
+                  </p>
+                </RightBox>
+              </RightContent>
+              <BorderCountries>
+                <p>Border Countries:</p>
+                {country.borders.map((border) => (
+                  <BorderButton key={border}>{border}</BorderButton>
+                ))}
+              </BorderCountries>
+            </DetailsContainer>
+          </Content>
+        </Container>
+      )}
     </div>
   );
 };

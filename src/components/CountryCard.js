@@ -1,25 +1,28 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const CountryCard = (props) => {
   return (
-    <Container>
-      <Image src={props.country.flag} alt="flag" />
-      <CountryTitle>{props.country.name}</CountryTitle>
-      <CountrySummary>
-        <p>
-          Population:{" "}
-          <span>
-            {new Intl.NumberFormat().format(props.country.population)}
-          </span>
-        </p>
-        <p>
-          Region: <span>{props.country.region}</span>
-        </p>
-        <p>
-          Capital: <span>{props.country.capital}</span>
-        </p>
-      </CountrySummary>
-    </Container>
+    <Link to={`./country/${props.country.name.toLowerCase()}`}>
+      <Container>
+        <Image src={props.country.flag} alt="flag" />
+        <CountryTitle>{props.country.name}</CountryTitle>
+        <CountrySummary>
+          <p>
+            Population:{" "}
+            <span>
+              {new Intl.NumberFormat().format(props.country.population)}
+            </span>
+          </p>
+          <p>
+            Region: <span>{props.country.region}</span>
+          </p>
+          <p>
+            Capital: <span>{props.country.capital}</span>
+          </p>
+        </CountrySummary>
+      </Container>
+    </Link>
   );
 };
 

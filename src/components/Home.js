@@ -5,18 +5,15 @@ import Search from "./Search";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
-  // const abortController = new AbortController();
   const [hasLoaded, setHasLoaded] = useState(false);
   const url = "https://restcountries.eu/rest/v2/all";
 
   const getCountries = async () => {
     try {
-      // const res = await fetch("https://restcountries.eu/rest/v2/name/italy");
       const res = await fetch(url);
 
-      if (!res.ok) throw new Error("Something is bad");
+      if (!res.ok) throw new Error("Something went wrong");
       const data = await res.json();
-
       const newCountries = data.map((country) => country);
 
       setCountries(newCountries);
@@ -28,19 +25,21 @@ const Home = () => {
 
   useEffect(() => {
     getCountries();
-  }, [hasLoaded]);
-  if (!hasLoaded)
-    return (
-      <Container>
-        <h2>LOADING...</h2>
-      </Container>
-    );
+  }, []);
 
   return (
-    <Container>
-      <Search />
-      <CountryList countries={countries}></CountryList>
-    </Container>
+    <>
+      {!hasLoaded ? (
+        <Container>
+          <h2>LOADING...</h2>
+        </Container>
+      ) : (
+        <Container>
+          <Search />
+          <CountryList countries={countries}></CountryList>
+        </Container>
+      )}
+    </>
   );
 };
 
