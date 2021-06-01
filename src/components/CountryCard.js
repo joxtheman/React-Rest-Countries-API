@@ -30,9 +30,10 @@ export default CountryCard;
 
 const Container = styled.div`
   margin-bottom: 40px;
+  height: 350px;
   background-color: ${(props) => props.theme.elements};
   border-radius: 3px;
-  width: 250px;
+  width: 260px;
   box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
   -webkit-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
   -moz-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};

@@ -40,6 +40,7 @@ export default Search;
 const Container = styled.div`
   display: inline-block;
   margin: 20px 0px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
 

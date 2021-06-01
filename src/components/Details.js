@@ -93,9 +93,13 @@ const Details = () => {
               </RightContent>
               <BorderCountries>
                 <p>Border Countries:</p>
-                {country.borders.map((border) => (
-                  <BorderButton key={border}>{border}</BorderButton>
-                ))}
+                {country.borders.length === 0 ? (
+                  <p>This country does NOT have any border countries</p>
+                ) : (
+                  country.borders.map((border) => (
+                    <BorderButton key={border}>{border}</BorderButton>
+                  ))
+                )}
               </BorderCountries>
             </DetailsContainer>
           </Content>
