@@ -12,7 +12,7 @@ export const darkTheme = {
   body: "#202c37",
   fontColor: "	#ffff",
   elements: "hsl(209, 23%, 22%)",
-  input: "#858585",
+  input: "#ffff",
   shadow: "hsl(209, 23%, 22%)",
 };
 
@@ -22,13 +22,13 @@ export const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme.fontColor};
     
 }
-input,select{
+select{
      background-color: ${(props) => props.theme.elements};
      color: ${(props) => props.theme.fontColor};
 }
 
 
 ::placeholder {
-    color: ${(props) => props.theme.fontColor};
+    color: ${(props) => props.theme.input};
   }
 `;

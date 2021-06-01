@@ -17,11 +17,11 @@ function App() {
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
-      <Navbar className="dark" changeTheme={changeTheme} />
+      <Navbar changeTheme={changeTheme} themeSwitch={theme} />
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <Home themeSwitch={theme} />
           </Route>
           <Route path="/country/:id">
             <Details></Details>

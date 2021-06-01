@@ -1,8 +1,13 @@
 import styled from "styled-components";
-const Search = () => {
+import { FaSearch } from "react-icons/fa";
+
+const Search = ({ themeSwitch }) => {
   return (
     <Container>
       <form>
+        <SearchIcon>
+          <FaSearch color={themeSwitch === "light" ? "#858585" : "white"} />
+        </SearchIcon>
         <input type="text" placeholder="Search for a country..." />
       </form>
 
@@ -45,9 +50,9 @@ const Container = styled.div`
   justify-content: space-between;
 
   & input {
-    /* color: ${(props) => props.theme.fontColor}; */
-    /* background-color: ${(props) => props.theme.elements}; */
-    padding: 15px 40px 15px 40px;
+    background-color: ${(props) => props.theme.elements};
+    color: ${(props) => props.theme.input};
+    padding: 15px 40px 15px 70px;
     width: 450px;
 
     outline: none;
@@ -71,4 +76,17 @@ const Container = styled.div`
     -webkit-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
     -moz-box-shadow: 0px 1px 3px 0px ${(props) => props.theme.shadow};
   }
+  form {
+    position: relative;
+    & div {
+      position: absolute;
+      top: 35%;
+      left: 4%;
+    }
+  }
+`;
+
+const SearchIcon = styled.div`
+  display: inline-block;
+  padding-left: 10px;
 `;

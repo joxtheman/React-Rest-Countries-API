@@ -3,7 +3,7 @@ import styled from "styled-components";
 import CountryList from "./CountryList";
 import Search from "./Search";
 
-const Home = () => {
+const Home = (props) => {
   const [countries, setCountries] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const url = "https://restcountries.eu/rest/v2/all";
@@ -35,7 +35,7 @@ const Home = () => {
         </Container>
       ) : (
         <Container>
-          <Search />
+          <Search themeSwitch={props.themeSwitch} />
           <CountryList countries={countries}></CountryList>
         </Container>
       )}

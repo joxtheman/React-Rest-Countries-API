@@ -1,10 +1,14 @@
 import styled from "styled-components";
+import { FaRegMoon, FaMoon } from "react-icons/fa";
 
-const Navbar = ({ changeTheme }) => {
+const Navbar = ({ changeTheme, themeSwitch }) => {
   return (
     <Nav>
       <Text>Where in the world?</Text>
-      <ThemeMode onClick={changeTheme}>Dark Mode</ThemeMode>
+      <ThemeMode onClick={changeTheme}>
+        <FaIcon>{themeSwitch === "light" ? <FaRegMoon /> : <FaMoon />}</FaIcon>
+        <p> Dark Mode </p>
+      </ThemeMode>
     </Nav>
   );
 };
@@ -28,9 +32,23 @@ const Text = styled.h3`
   /* color: ${(props) => props.theme.fontColor}; */
 `;
 
-const ThemeMode = styled.p`
+const ThemeMode = styled.div`
   /* color: ${(props) => props.theme.fontColor}; */
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    padding-left: 10px;
+  }
+`;
+
+const FaIcon = styled.div`
+  /* color: ${(props) => props.theme.fontColor}; */
+  /* background-color: white; */
+  transform: rotateZ(-30deg);
+  padding-top: 5px;
 `;
